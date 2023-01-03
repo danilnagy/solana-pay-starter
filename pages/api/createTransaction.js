@@ -69,22 +69,22 @@ const createTransaction = async (req, res) => {
 
     // This is the "action" that the transaction will take
     // We're just going to transfer some SOL
-    // const transferInstruction = SystemProgram.transfer({
-    //   fromPubkey: buyerPublicKey,
-    //   // Lamports are the smallest unit of SOL, like Gwei with Ethereum
-    //   lamports: bigAmount.multipliedBy(LAMPORTS_PER_SOL).toNumber(), 
-    //   toPubkey: sellerPublicKey,
-    // });
+    const transferInstruction = SystemProgram.transfer({
+      fromPubkey: buyerPublicKey,
+      // Lamports are the smallest unit of SOL, like Gwei with Ethereum
+      lamports: bigAmount.multipliedBy(LAMPORTS_PER_SOL).toNumber(), 
+      toPubkey: sellerPublicKey,
+    });
 
     // Here we're creating a different type of transfer instruction
-    const transferInstruction = createTransferCheckedInstruction(
-        buyerUsdcAddress, 
-        usdcAddress,     // This is the address of the token we want to transfer
-        shopUsdcAddress, 
-        buyerPublicKey, 
-        bigAmount.toNumber() * 10 ** (await usdcMint).decimals, 
-        usdcMint.decimals // The token could have any number of decimals
-      );
+    // const transferInstruction = createTransferCheckedInstruction(
+    //     buyerUsdcAddress, 
+    //     usdcAddress,     // This is the address of the token we want to transfer
+    //     shopUsdcAddress, 
+    //     buyerPublicKey, 
+    //     bigAmount.toNumber() * 10 ** (await usdcMint).decimals, 
+    //     usdcMint.decimals // The token could have any number of decimals
+    //   );
 
     // We're adding more instructions to the transaction
     transferInstruction.keys.push({
