@@ -42,6 +42,8 @@ export default function Buy({ itemID }) {
       body: JSON.stringify(order),
     });
     const txData = await txResponse.json();
+
+    console.log("foo", txData);
     
     // We create a transaction object
     const tx = Transaction.from(Buffer.from(txData.transaction, "base64"));

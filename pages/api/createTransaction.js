@@ -51,14 +51,14 @@ const createTransaction = async (req, res) => {
     const endpoint = clusterApiUrl(network);
     const connection = new Connection(endpoint);
 
-    const buyerUsdcAddress = await getAssociatedTokenAddress(usdcAddress, buyerPublicKey);
-    const shopUsdcAddress = await getAssociatedTokenAddress(usdcAddress, sellerPublicKey);
+    // const buyerUsdcAddress = await getAssociatedTokenAddress(usdcAddress, buyerPublicKey);
+    // const shopUsdcAddress = await getAssociatedTokenAddress(usdcAddress, sellerPublicKey);
 
     // A blockhash is sort of like an ID for a block. It lets you identify each block.
     const { blockhash } = await connection.getLatestBlockhash("finalized");
     
     // This is new, we're getting the mint address of the token we want to transfer
-    const usdcMint = await getMint(connection, usdcAddress);
+    // const usdcMint = await getMint(connection, usdcAddress);
     
     // The first two things we need - a recent block ID 
     // and the public key of the fee payer 
@@ -66,6 +66,8 @@ const createTransaction = async (req, res) => {
       recentBlockhash: blockhash,
       feePayer: buyerPublicKey,
     });
+
+    console.log("tx", tx);
 
     // This is the "action" that the transaction will take
     // We're just going to transfer some SOL
@@ -106,7 +108,7 @@ const createTransaction = async (req, res) => {
       transaction: base64,
     });
   } catch (error) {
-    console.error(error);
+    console.error("tx error:", error);
 
     res.status(500).json({ error: "error creating tx" });
     return;
