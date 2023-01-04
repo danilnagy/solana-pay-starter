@@ -17,9 +17,11 @@ const sellerAddress = 'HuaRNjL2kygnhw8wbexEedpr7C8RMWrTxDbKK8PhXfqQ'
 const sellerPublicKey = new PublicKey(sellerAddress);
 
 const createTransaction = async (req, res) => {
+  console.log('req:', req);
   try {
     // Extract the transaction data from the request body
     const { buyer, orderID, itemID } = req.body;
+    console.log('buyer:', buyer);
 
     // If we don't have something we need, stop!
     if (!buyer) {
@@ -49,7 +51,12 @@ const createTransaction = async (req, res) => {
 
     const network = WalletAdapterNetwork.Mainnet;
     const endpoint = clusterApiUrl(network);
+    // const endpoint = 'https://solana-api.projectserum.com';
+    console.log('endpoint transaction:', endpoint);
+
     const connection = new Connection(endpoint);
+
+    console.log("connection", connection);
 
     // const buyerUsdcAddress = await getAssociatedTokenAddress(usdcAddress, buyerPublicKey);
     // const shopUsdcAddress = await getAssociatedTokenAddress(usdcAddress, sellerPublicKey);

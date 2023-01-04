@@ -17,10 +17,14 @@ import "../styles/globals.css";
 import "../styles/App.css";
 
 const App = ({ Component, pageProps }) => {
-  const network = WalletAdapterNetwork.Mainnet;
+  // const network = WalletAdapterNetwork.Mainnet;
+  // console.log('network:', network);
 
   // You can also provide a custom RPC endpoint
-  const endpoint = useMemo(() => clusterApiUrl(network), [network]);
+  // const endpoint = useMemo(() => clusterApiUrl(network), [network]);
+
+  const endpoint = 'https://solana-api.projectserum.com';
+  console.log('endpoint app:', endpoint);
 
   // @solana/wallet-adapter-wallets includes all the adapters but supports tree shaking and lazy loading --
   // Only the wallets you configure here will be compiled into your application, and only the dependencies
@@ -30,11 +34,11 @@ const App = ({ Component, pageProps }) => {
       new PhantomWalletAdapter(),
       new GlowWalletAdapter(),
       new SlopeWalletAdapter(),
-      new SolflareWalletAdapter({ network }),
+      // new SolflareWalletAdapter({ network }),
       new TorusWalletAdapter(),
       // new BraveWalletAdapter(),
     ],
-    [network]
+    [endpoint]
   );
 
   return (

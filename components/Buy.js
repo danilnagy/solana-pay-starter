@@ -43,7 +43,7 @@ export default function Buy({ itemID }) {
     });
     const txData = await txResponse.json();
 
-    console.log("foo", txData);
+    console.log("txData", txData);
     
     // We create a transaction object
     const tx = Transaction.from(Buffer.from(txData.transaction, "base64"));
@@ -53,7 +53,7 @@ export default function Buy({ itemID }) {
     try {
       // Send the transaction to the network
       const txHash = await sendTransaction(tx, connection);
-      console.log(`Transaction sent: https://solscan.io/tx/${txHash}?cluster=devnet`);
+      console.log(`Transaction sent: https://solscan.io/tx/${txHash}?cluster=mainnet`);
       setStatus(STATUS.Submitted);
     } catch (error) {
       console.error(error);
@@ -84,8 +84,9 @@ export default function Buy({ itemID }) {
       setLoading(true);
       const interval = setInterval(async () => {
         try {
+          console.log("Finding tx reference");
           const result = await findReference(connection, orderID);
-          console.log("Finding tx reference", result.confirmationStatus);
+          console.log("Found tx reference", result.confirmationStatus);
           if (result.confirmationStatus === "confirmed" || result.confirmationStatus === "finalized") {
             clearInterval(interval);
             setStatus(STATUS.Paid);
@@ -101,7 +102,7 @@ export default function Buy({ itemID }) {
         } finally {
           setLoading(false);
         }
-      }, 1000);
+      }, 5000);
       return () => {
         clearInterval(interval);
       };
