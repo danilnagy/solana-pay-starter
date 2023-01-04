@@ -11,7 +11,7 @@
   {
     "id": 2,
     "name": "test_product",
-    "price": "1.1",
+    "price": "0.05",
     "image_url": "https://media.giphy.com/media/V1az9y4VDYXzzAjThW/giphy.gif",
     "description": "Hugs <3",
     "filename": "download.zip",
