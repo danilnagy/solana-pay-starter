@@ -23,7 +23,7 @@ const App = ({ Component, pageProps }) => {
   // You can also provide a custom RPC endpoint
   // const endpoint = useMemo(() => clusterApiUrl(network), [network]);
 
-  const endpoint = 'https://solana-api.projectserum.com';
+  const endpoint = 'https://nameless-fabled-frost.solana-mainnet.discover.quiknode.pro/62c222e452d65371bf90cf04c9284cd1145d5740/';
   console.log('endpoint app:', endpoint);
 
   // @solana/wallet-adapter-wallets includes all the adapters but supports tree shaking and lazy loading --

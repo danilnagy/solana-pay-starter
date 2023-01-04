@@ -49,9 +49,9 @@ const createTransaction = async (req, res) => {
     const bigAmount = BigNumber(itemPrice);
     const buyerPublicKey = new PublicKey(buyer);
 
-    const network = WalletAdapterNetwork.Mainnet;
-    const endpoint = clusterApiUrl(network);
-    // const endpoint = 'https://solana-api.projectserum.com';
+    // const network = WalletAdapterNetwork.Mainnet;
+    // const endpoint = clusterApiUrl(network);
+    const endpoint = 'https://nameless-fabled-frost.solana-mainnet.discover.quiknode.pro/62c222e452d65371bf90cf04c9284cd1145d5740/';
     console.log('endpoint transaction:', endpoint);
 
     const connection = new Connection(endpoint);
